@@ -1,6 +1,6 @@
 import os
 import re
-import StringIO
+import io
 import tempfile
 from collections import namedtuple
 from numbers import Number
@@ -399,7 +399,7 @@ class ChdkDevice(object):
                     raise RuntimeError(
                         "To convert into JPEG or PNG, please install the "
                         "`pillow` package.")
-                img = Image.open(StringIO.StringIO(imgdata))
+                img = Image.open(io.StringIO(imgdata))
                 width, height = img.size
                 img.resize((width/2, height))
                 imgdata = img.tobytes('PNG' if format == 'png' else 'JPEG')

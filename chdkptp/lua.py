@@ -1,8 +1,8 @@
 import logging
+import lupa
 import numbers
 import os
-
-import lupa
+import six
 
 CHDKPTP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             'vendor', 'chdkptp')
@@ -25,7 +25,7 @@ class LuaContext(object):
         inside of `pcall` and raises proper Exceptions.
     """
     def _raise_exception(self, errval):
-        if isinstance(errval, (basestring, numbers.Number)):
+        if isinstance(errval, (six.string_types, numbers.Number)):
             raise lupa.LuaError(errval)
         elif errval['etype'] == 'ptp':
             raise PTPError(errval)
@@ -85,7 +85,7 @@ class LuaContext(object):
         return self._rt.globals()
 
     def __init__(self):
-        self._rt = lupa.LuaRuntime(unpack_returned_tuples=True, encoding=None)
+        self._rt = lupa.LuaRuntime(unpack_returned_tuples=True, encoding='latin-1')
         if self.eval("type(jit) == 'table'"):
             raise RuntimeError("lupa must be linked against Lua, not LuaJIT.\n"
                                "Please install lupa with `--no-luajit`.")

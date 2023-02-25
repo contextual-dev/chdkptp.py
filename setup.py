@@ -11,7 +11,7 @@ CHDKPTP_PATCH = os.path.abspath(os.path.join('.', 'chdkptp_module.diff'))
 
 class CustomInstall(InstallCommand):
     def run(self):
-        subprocess.check_call(['patch', '-d', CHDKPTP_PATH, '-i',
+        subprocess.check_call(['patch', '-f', '-d', CHDKPTP_PATH, '-i',
                                CHDKPTP_PATCH, '-p', '1'])
         os.symlink(os.path.join(CHDKPTP_PATH, 'config-sample-linux.mk'),
                    os.path.join(CHDKPTP_PATH, 'config.mk'))
@@ -20,17 +20,18 @@ class CustomInstall(InstallCommand):
 
 setup(
     name='chdkptp.py',
-    version="0.1.3",
+    version="0.1.4",
     description=("Python bindings for chdkptp"),
     author="Johannes Baiter",
     url="http://github.com/jbaiter/chdkptp.py.git",
     author_email="johannes.baiter@gmail.com",
     license='GPL',
     packages=['chdkptp'],
+    package_dir={'chdkptp': 'chdkptp'},
     package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so",
                               "vendor/chdkptp/lua/*.lua"]},
     install_requires=[
-        "lupa >= 1.1",
+        "lupa >= 1.6"
     ],
     cmdclass={'install': CustomInstall}
 )
