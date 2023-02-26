@@ -11,6 +11,7 @@ CHDKPTP_PATCH = os.path.abspath(os.path.join('.', 'chdkptp_module.diff'))
 
 class CustomInstall(InstallCommand):
     def run(self):
+        print("Patching and building chdkptp...")
         subprocess.check_call(['patch', '-f', '-d', CHDKPTP_PATH, '-i',
                                CHDKPTP_PATCH, '-p', '1'])
         os.symlink(os.path.join(CHDKPTP_PATH, 'config-sample-linux.mk'),
