@@ -35,8 +35,7 @@ setup(
     license='GPL',
     packages=['chdkptp'],
     package_dir={'chdkptp': 'chdkptp'},
-    package_data={"chdkptp": ["vendor/chdkptp/*.so",
-                              "vendor/chdkptp/lua/*.lua"]},
+    package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so"]},
     install_requires=[
         "lupa >= 1.6"
     ],
