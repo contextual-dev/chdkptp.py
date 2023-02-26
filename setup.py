@@ -1,5 +1,6 @@
 import os
 import subprocess
+import shutil
 
 from setuptools.command.install import install as InstallCommand
 from setuptools import setup
@@ -21,6 +22,7 @@ class CustomInstall(InstallCommand):
         filenames = next(os.walk(CHDKPTP_PATH), (None, None, []))[2]
         print("Files after compilation")
         print(filenames)
+        shutil.rmtree(os.path.join(CHDKPTP_PATH, 'lua'))
         InstallCommand.run(self)
 
 setup(
@@ -32,7 +34,9 @@ setup(
     author_email="johannes.baiter@gmail.com",
     license='GPL',
     packages=['chdkptp'],
-    package_data={"chdkptp": ["vendor/chdkptp/*"]},
+    package_dir={'chdkptp': 'chdkptp'},
+    package_data={"chdkptp": ["vendor/chdkptp/*.so",
+                              "vendor/chdkptp/lua/*.lua"]},
     install_requires=[
         "lupa >= 1.6"
     ],
