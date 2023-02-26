@@ -27,7 +27,6 @@ setup(
     author_email="johannes.baiter@gmail.com",
     license='GPL',
     packages=['chdkptp'],
-    package_dir={'chdkptp': 'chdkptp'},
     package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so",
                               "vendor/chdkptp/lua/*.lua"]},
     install_requires=[
