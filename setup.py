@@ -22,7 +22,6 @@ class CustomInstall(InstallCommand):
         filenames = next(os.walk(CHDKPTP_PATH), (None, None, []))[2]
         print("Files after compilation")
         print(filenames)
-        shutil.rmtree(os.path.join(CHDKPTP_PATH, 'lua'))
         InstallCommand.run(self)
 
 setup(
@@ -35,7 +34,8 @@ setup(
     license='GPL',
     packages=['chdkptp'],
     package_dir={'chdkptp': 'chdkptp'},
-    package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so"]},
+    package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so",
+                              "vendor/chdkptp/lua/*.lua"]},
     install_requires=[
         "lupa >= 1.6"
     ],
