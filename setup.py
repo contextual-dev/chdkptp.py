@@ -32,7 +32,7 @@ setup(
     author_email="johannes.baiter@gmail.com",
     license='GPL',
     packages=['chdkptp'],
-    package_data={"chdkptp": ["vendor/chdkptp/chdkptp.so",
+    package_data={"chdkptp": ["vendor/chdkptp/*.so",
                               "vendor/chdkptp/lua/*.lua"]},
     install_requires=[
         "lupa >= 1.6"
