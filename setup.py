@@ -17,6 +17,10 @@ class CustomInstall(InstallCommand):
         os.symlink(os.path.join(CHDKPTP_PATH, 'config-sample-linux.mk'),
                    os.path.join(CHDKPTP_PATH, 'config.mk'))
         subprocess.check_call(['make', '-C', CHDKPTP_PATH])
+
+        filenames = next(os.walk(CHDKPTP_PATH), (None, None, []))[2]
+        print("Files after compilation")
+        print(filenames)
         InstallCommand.run(self)
 
 setup(
